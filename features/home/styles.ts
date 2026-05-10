@@ -1,14 +1,13 @@
 import { SxProps } from "@mui/material";
 
 export const pokemonListSty: SxProps = {
-  width: "90%",
-  mx: "auto",
-  mt: 6,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  p: "1rem",
+  height: "80vh",
+  overflow: "hidden",
+  padding: "2rem",
+  pt: 0,
+  flex: 1,
 };
 
 export const pokemonCardSty: SxProps = {
@@ -23,10 +22,13 @@ export const pokemonCardSty: SxProps = {
   borderRadius: 4,
 };
 
-export const pokemonGridSty: SxProps = { flex: 1, width: "100%" };
+export const pokemonGridSty: SxProps = {
+  width: "100%",
+};
 export const homeHeaderSty: SxProps = {
   display: "flex",
   backgroundColor: "cornflowerblue",
   justifyContent: "center",
   alignItems: "center",
+  flexShrink: 0,
 };
