@@ -4,14 +4,13 @@ import { PokemonCard } from "@/features/home/components/pokemon-card";
 import { usePokemonList } from "@/features/home/hooks/use-pokemon-list";
 import { usePokemonSearch } from "@/features/home/hooks/use-search-pokemon";
 import {
-  homeHeaderSty,
   pokemonGridSty,
-  pokemonListSty,
+  pokemonListSty
 } from "@/features/home/styles";
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from "@/lib/constants";
-import Logo from "@/public/logo.png";
+
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
@@ -20,6 +19,7 @@ export default function Home() {
     usePokemonList();
   const { filteredPokemons, onSearch, searchValue } =
     usePokemonSearch(pokemons);
+  const router = useRouter();
 
   const [infiniteRef] = useInfiniteScroll({
     hasNextPage: hasMore,
@@ -37,9 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <Box sx={homeHeaderSty} id="header">
-        <Image src={Logo} alt="Logo" style={{ width: 150, height: "auto" }} />
-      </Box>
+      
       <Box sx={pokemonListSty}>
         <TextField
           variant="outlined"
@@ -65,7 +63,7 @@ export default function Home() {
             >
               {filteredPokemons.map((d) => (
                 <Grid key={d.name} size={1}>
-                  <PokemonCard {...d} />
+                  <PokemonCard {...d} onClickCard={() => router.push(d.name)} />
                 </Grid>
               ))}
             </Grid>

@@ -10,13 +10,19 @@ interface PokemonCardProps {
   sprite?: string;
   url: string;
   isFavorite?: boolean;
+  onClickCard?: () => void;
 }
 
 export const PokemonCard = (props: PokemonCardProps) => {
-  const { name, sprite, isFavorite } = props;
+  const { name, sprite, isFavorite, onClickCard } = props;
 
   return (
-    <Card variant="outlined" elevation={0} sx={pokemonCardSty}>
+    <Card
+      variant="outlined"
+      elevation={0}
+      sx={pokemonCardSty}
+      {...(onClickCard && { onClick: onClickCard })}
+    >
       {isFavorite ? (
         <Star style={{ color: "gold" }} sx={{ alignSelf: "flex-end" }} />
       ) : (
