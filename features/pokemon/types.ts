@@ -1,4 +1,10 @@
 export type RequestDetailPokemonType = { name: string };
+export type RequestPokemonLoreType = { name: string };
+
+type NamedResource = {
+  name: string;
+  url: string;
+};
 
 export type PokemonDetailType = {
   id: number;
@@ -115,7 +121,58 @@ export type PokemonDetailType = {
   }[];
 };
 
-type NamedResource = {
+export type PokemonLoreType = {
+  base_happiness: number;
+  capture_rate: number;
+  color: NamedResource;
+  egg_groups: NamedResource[];
+  evolution_chain: { url: string };
+  evolves_from_species: NamedResource | null;
+  flavor_text_entries: {
+    flavor_text: string;
+    language: NamedResource;
+    version: NamedResource;
+  }[];
+  form_descriptions: unknown[];
+  forms_switchable: boolean;
+  gender_rate: number;
+  genera: {
+    genus: string;
+    language: NamedResource;
+  }[];
+  generation: NamedResource;
+  growth_rate: NamedResource;
+  habitat: NamedResource | null;
+  has_gender_differences: boolean;
+  hatch_counter: number;
+  id: number;
+  is_baby: boolean;
+  is_legendary: boolean;
+  is_mythical: boolean;
   name: string;
-  url: string;
+  names: {
+    name: string;
+    language: NamedResource;
+  }[];
+  order: number;
+  pal_park_encounters: {
+    area: NamedResource;
+    base_score: number;
+    rate: number;
+  }[];
+  pokedex_numbers: {
+    entry_number: number;
+    pokedex: NamedResource;
+  }[];
+  shape: NamedResource;
+  varieties: {
+    is_default: boolean;
+    pokemon: NamedResource;
+  }[];
+};
+
+export type PokemonCollectionType = {
+  nickname: string;
+  collectionType: 1 | 2 | 3;
+  description?: string;
 };

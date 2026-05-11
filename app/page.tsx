@@ -3,10 +3,7 @@
 import { PokemonCard } from "@/features/home/components/pokemon-card";
 import { usePokemonList } from "@/features/home/hooks/use-pokemon-list";
 import { usePokemonSearch } from "@/features/home/hooks/use-search-pokemon";
-import {
-  pokemonGridSty,
-  pokemonListSty
-} from "@/features/home/styles";
+import { pokemonGridSty, pokemonListSty } from "@/features/home/styles";
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from "@/lib/constants";
 
 import { Box, Grid, TextField, Typography } from "@mui/material";
@@ -37,7 +34,6 @@ export default function Home() {
 
   return (
     <>
-      
       <Box sx={pokemonListSty}>
         <TextField
           variant="outlined"
