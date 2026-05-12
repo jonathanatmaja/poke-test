@@ -1,6 +1,6 @@
 import { PokemonCard } from "@/features/home/components/pokemon-card";
 import { COLLECTION_TYPES } from "@/lib/constants";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof PokemonCard> = {
   title: "Components/PokemonCard",

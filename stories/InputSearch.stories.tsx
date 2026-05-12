@@ -1,5 +1,5 @@
 import { InputSearch } from "@/lib/components/input-search";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof InputSearch> = {
   title: "Components/InputSearch",
