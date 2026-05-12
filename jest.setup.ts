@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom";
 
+process.env.NEXT_PUBLIC_API_URL = "https://pokeapi.co/api/v2";
+
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     back: jest.fn(),

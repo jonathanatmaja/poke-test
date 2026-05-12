@@ -12,7 +12,7 @@ export const detailServices = () => ({
   ): Promise<PokemonDetailType> => {
     const { name } = props;
     const res = await axios.get<PokemonDetailType>(
-      `https://pokeapi.co/api/v2/pokemon/${name}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/pokemon/${name}`,
       {
         headers: { Accept: "application/json" },
       },
@@ -24,7 +24,7 @@ export const detailServices = () => ({
   ): Promise<PokemonLoreType> => {
     const { name } = props;
     const res = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon-species/${name}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/pokemon-species/${name}`,
       {
         headers: { Accept: "application/json" },
       },

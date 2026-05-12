@@ -13,7 +13,7 @@ describe("Pokemon list", () => {
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
-        "https://pokeapi.co/api/v2/pokemon",
+        `${process.env.NEXT_PUBLIC_API_URL}/pokemon`,
         {
           params: { limit: DEFAULT_LIMIT, offset: DEFAULT_OFFSET },
           headers: { Accept: "application/json" },

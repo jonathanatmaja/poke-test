@@ -7,7 +7,7 @@ export const homeServices = () => ({
   ): Promise<PokemonListResponse> => {
     const { limit, offset } = props;
     const res = await axios.get<PokemonListResponse>(
-      `https://pokeapi.co/api/v2/pokemon`,
+      `${process.env.NEXT_PUBLIC_API_URL}/pokemon`,
       { params: { limit, offset }, headers: { Accept: "application/json" } },
     );
     return res.data;

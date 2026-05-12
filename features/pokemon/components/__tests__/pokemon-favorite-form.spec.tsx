@@ -18,7 +18,7 @@ describe("Favorite Form", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenNthCalledWith(
         1,
-        "https://pokeapi.co/api/v2/pokemon/bulbasaur",
+        `${process.env.NEXT_PUBLIC_API_URL}/pokemon/bulbasaur`,
         {
           headers: { Accept: "application/json" },
         },

@@ -8,7 +8,7 @@ export const generateMockPokemonList = (limit: number) => ({
     previous: null,
     results: Array.from({ length: limit }, (_, i) => ({
       name: `pokemon-${i + 1}`,
-      url: `https://pokeapi.co/api/v2/pokemon/${i + 1}/`,
+      url: `process.env.NEXT_PUBLIC_API_URL/pokemon/${i + 1}/`,
     })),
   },
 });
