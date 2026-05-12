@@ -6,6 +6,8 @@ Web: https://scintillating-otter-74bd3b.netlify.app/
 
 Storybook: https://astounding-cat-c25c74.netlify.app/
 
+NEXT_PUBLIC_API_URL: https://pokeapi.co/api/v2 (Intentionally show here)
+
 ## Structure
 
 ```txt
