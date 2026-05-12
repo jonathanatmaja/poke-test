@@ -1,6 +1,6 @@
 # Poke Test
 
-A Pokedex app built with Next.js (App Router), MUI, Axios, and TanStack Query.
+A Pokedex app built with Next.js (App Router), MUI, Axios.
 
 ## Structure
 
