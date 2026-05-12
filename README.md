@@ -2,6 +2,9 @@
 
 A Pokedex app built with Next.js (App Router), MUI, Axios.
 
+Web: https://scintillating-otter-74bd3b.netlify.app/
+Storybook: https://astounding-cat-c25c74.netlify.app/
+
 ## Structure
 
 ```txt
