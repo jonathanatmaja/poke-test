@@ -25,16 +25,19 @@ npm i
 ```
 
 Copy env file (optional):
+
 ```bash
 cp .env.example .env.local
 ```
 
 Run dev server:
+
 ```bash
 npm run dev
 ```
 
 Build & start production:
+
 ```bash
 npm run build
 npm run start
@@ -57,6 +60,12 @@ npm run storybook
 ## APIs Used
 
 Endpoints (PokeAPI v2):
+
 - `GET /pokemon?limit=<number>&offset=<number>`: list pokemons (home page)
 - `GET /pokemon/<name>`: pokemon detail
 - `GET /pokemon-species/<name>`: pokemon lore/species info
+
+## Lighthouse Docs
+
+![Screenshot](docs/1.png)
+![Screenshot](docs/2.png)
