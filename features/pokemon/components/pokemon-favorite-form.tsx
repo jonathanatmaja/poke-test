@@ -1,4 +1,3 @@
-import { COLLECTION_TYPES } from "@/lib/constants";
 import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
 import { Controller, Form } from "react-hook-form";
 import { usePokemonCollection } from "../hooks/use-pokemon-collection";
@@ -9,7 +8,12 @@ interface PokemonFavoriteForm {
 
 export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
   const { name } = props;
-  const { collectionForm, onSubmitCollection } = usePokemonCollection(name);
+  const {
+    collectionForm,
+    onSubmitCollection,
+    onRemoveCollection,
+    pokemonCollections,
+  } = usePokemonCollection(name);
   const {
     register,
     control,
@@ -21,6 +25,8 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
     { label: "Whishlist", value: 2 },
     { label: "Owned", value: 3 },
   ];
+
+  const isInCollection = pokemonCollections.some((d) => d.name === name);
 
   return (
     <Box>
@@ -67,13 +73,33 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
           sx={{ mb: 2 }}
           {...register("description")}
         />
-        <Button
-          type="submit"
-          sx={{ marginLeft: "auto", display: "block" }}
-          variant="outlined"
+        <Box
+          sx={{
+            display: "flex",
+            columnGap: 5,
+          }}
         >
-          Save
-        </Button>
+          {isInCollection && (
+            <Button
+              sx={{ marginLeft: "auto", display: "block", flex: 1 }}
+              variant="outlined"
+              size="small"
+              color="warning"
+              onClick={() => onRemoveCollection(name)}
+            >
+              Remove from collection
+            </Button>
+          )}
+
+          <Button
+            type="submit"
+            sx={{ marginLeft: "auto", display: "block", flex: 1 }}
+            variant="outlined"
+            size="small"
+          >
+            Save
+          </Button>
+        </Box>
       </Form>
     </Box>
   );

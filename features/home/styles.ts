@@ -20,6 +20,7 @@ export const pokemonCardSty: SxProps = {
   justifyContent: "center",
   boxShadow: "none",
   borderRadius: 4,
+  cursor: "pointer",
 };
 
 export const pokemonGridSty: SxProps = {
