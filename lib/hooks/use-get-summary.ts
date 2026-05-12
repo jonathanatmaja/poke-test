@@ -1,11 +1,11 @@
+import { faker } from "@faker-js/faker";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { faker } from "@faker-js/faker";
 
 export const useGetSummary = () => {
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleGetSummary = async (name: string) => {
+  const handleGetSummary = async () => {
     try {
       setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 3000));

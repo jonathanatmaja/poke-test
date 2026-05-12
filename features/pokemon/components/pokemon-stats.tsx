@@ -22,7 +22,7 @@ export const PokemonStats = (props: { stats: PokemonStatsProps[] }) => {
         Stats
       </Typography>
 
-      {stats.map((item) => (
+      {stats?.map((item) => (
         <Box
           key={item.name}
           sx={{

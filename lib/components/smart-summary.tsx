@@ -1,19 +1,7 @@
-import {
-  Box,
-  Button,
-  Card,
-  Skeleton,
-  TextareaAutosize,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Card, Skeleton } from "@mui/material";
 import { useGetSummary } from "../hooks/use-get-summary";
 
-interface SmartSummaryProps {
-  name: string;
-}
-
-export const SmartSummary = (props: SmartSummaryProps) => {
-  const { name } = props;
+export const SmartSummary = () => {
   const { onGetSummary, loading, summary } = useGetSummary();
   return (
     <Card
@@ -39,7 +27,7 @@ export const SmartSummary = (props: SmartSummaryProps) => {
       <Button
         variant="contained"
         sx={{ flex: 1, width: "15%", alignSelf: "flex-end", m: 2, p: 0.5 }}
-        onClick={() => onGetSummary(name)}
+        onClick={onGetSummary}
         disabled={loading}
       >
         {loading ? "Generating..." : "Generate Summary"}

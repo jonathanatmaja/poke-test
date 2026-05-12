@@ -27,12 +27,11 @@ import { SmartSummary } from "@/lib/components/smart-summary";
 import { DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
 import { Box, Card, Chip, CircularProgress, Typography } from "@mui/material";
 import Image from "next/image";
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 export default function PokemonDetailPage() {
   const params = useParams<{ name?: string }>();
-  const route = useRouter();
   const name = params.name ?? "";
   const {
     onGetPokemonDetail,
@@ -100,8 +99,6 @@ export default function PokemonDetailPage() {
     notFound();
   }
 
-  const handleBack = () => route.push("/");
-
   return (
     <Box sx={{ padding: "2rem" }}>
       <Box sx={detailWrapperSty}>
@@ -158,7 +155,7 @@ export default function PokemonDetailPage() {
               </Box>
             </Box>
             <Box sx={{ flex: 1 }}>
-              <SmartSummary name={name} />
+              <SmartSummary />
             </Box>
           </Card>
         </Box>
