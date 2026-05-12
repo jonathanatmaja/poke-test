@@ -25,8 +25,9 @@ export const BackButton = (props: BackButtonProps) => {
       variant="outlined"
       sx={{ ...buttonSty, ...sx }}
       onClick={onBack ?? (() => route.back())}
+      
     >
-      <ArrowBack fontSize="small" />
+      <ArrowBack fontSize="small" data-testid="back-icon" />
     </Card>
   );
 };

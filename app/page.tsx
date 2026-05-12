@@ -8,7 +8,7 @@ import { usePokemonCollection } from "@/features/pokemon/hooks/use-pokemon-colle
 import { InputSearch } from "@/lib/components/input-search";
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from "@/lib/constants";
 
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";

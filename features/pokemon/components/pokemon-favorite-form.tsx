@@ -29,7 +29,7 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
   const isInCollection = pokemonCollections.some((d) => d.name === name);
 
   return (
-    <Box>
+    <Box data-testid="collection-form">
       <Form control={control} onSubmit={({ data }) => onSubmitCollection(data)}>
         <Typography sx={{ textDecoration: "underline", mb: 2 }}>
           Collection Form
@@ -43,6 +43,7 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
           {...register("nickname")}
           error={!!errors.nickname}
           helperText={errors.nickname?.message}
+          data-testid="input-nickname"
         />
         <Controller
           name="collectionType"
@@ -56,6 +57,7 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
               size="small"
               sx={{ mb: 2 }}
               {...field}
+              data-testid="select-collection-type"
             >
               {collectionTypes.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -72,6 +74,7 @@ export const PokemonFavoriteForm = (props: PokemonFavoriteForm) => {
           label="Description"
           sx={{ mb: 2 }}
           {...register("description")}
+          data-testid="input-description"
         />
         <Box
           sx={{

@@ -25,7 +25,6 @@ import type { PokemonLoreType } from "@/features/pokemon/types";
 import { getRandomPaleColor } from "@/features/pokemon/utils";
 import { BackButton } from "@/lib/components/back-button";
 import { DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
-import { ArrowBack } from "@mui/icons-material";
 import { Box, Card, Chip, CircularProgress, Typography } from "@mui/material";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -135,7 +134,11 @@ export default function PokemonDetailPage() {
             sx={{ ...infoCardSty, flex: 1 }}
           >
             <Box sx={{ display: "flex" }}>
-              <Typography variant="button" sx={{ fontSize: 36 }}>
+              <Typography
+                variant="button"
+                sx={{ fontSize: 36 }}
+                data-testid="pokemon-name"
+              >
                 {pokemon.name}
               </Typography>
               <Chip label={pokemon.id} variant="outlined" size="small" />

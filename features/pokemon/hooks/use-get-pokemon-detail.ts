@@ -25,7 +25,6 @@ export const useGetPokemonDetail = () => {
 
       try {
         const response = await getPokemonDetail(params);
-        // console.log(response);
         setPokemon(response);
       } catch (error) {
         console.error(error);
@@ -43,7 +42,6 @@ export const useGetPokemonDetail = () => {
 
       try {
         const response = await getPokemonLore(params);
-        console.log(response)
         setPokemonLore(response);
       } catch (error) {
         console.error(error);

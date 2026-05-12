@@ -18,6 +18,7 @@ export const PokemonCard = (props: PokemonCardProps) => {
 
   return (
     <Card
+      data-testid={`pokemon-card-${name}`}
       variant="outlined"
       elevation={0}
       sx={pokemonCardSty}
@@ -27,7 +28,10 @@ export const PokemonCard = (props: PokemonCardProps) => {
         <Star style={{ color: "gold" }} sx={{ alignSelf: "flex-end" }} />
       )}
       {Number(collectionType) === COLLECTION_TYPES.TEAM && (
-        <People style={{ color: "blueviolet" }} sx={{ alignSelf: "flex-end" }} />
+        <People
+          style={{ color: "blueviolet" }}
+          sx={{ alignSelf: "flex-end" }}
+        />
       )}
       {Number(collectionType) === COLLECTION_TYPES.OWNED && (
         <CatchingPokemon
