@@ -17,7 +17,8 @@ export const useGetPokemonDetail = () => {
     () => detailServices(),
     [],
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingLore, setIsLoadingLore] = useState(true);
 
   const handleGetPokemonDetail = useCallback(
     async (params: RequestDetailPokemonType) => {
@@ -38,7 +39,7 @@ export const useGetPokemonDetail = () => {
 
   const handleGetPokemonLore = useCallback(
     async (params: RequestPokemonLoreType) => {
-      setIsLoading(true);
+      setIsLoadingLore(true);
 
       try {
         const response = await getPokemonLore(params);
@@ -47,7 +48,7 @@ export const useGetPokemonDetail = () => {
         console.error(error);
         toast.error("Failed to fetch pokemon lore");
       } finally {
-        setIsLoading(false);
+        setIsLoadingLore(false);
       }
     },
     [getPokemonLore],
@@ -58,6 +59,6 @@ export const useGetPokemonDetail = () => {
     onGetPokemonLore: handleGetPokemonLore,
     pokemon,
     pokemonLore,
-    isLoading,
+    isLoading: isLoading || isLoadingLore,
   };
 };

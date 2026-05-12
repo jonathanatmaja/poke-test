@@ -10,7 +10,7 @@ import { getSpriteUrl } from "../utils";
 export const usePokemonList = () => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const { getPokemon } = useMemo(() => homeServices(), []);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [offset, setOffset] = useState(DEFAULT_OFFSET);
   const [hasMore, setHasMore] = useState(true);
 

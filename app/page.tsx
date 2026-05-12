@@ -36,6 +36,43 @@ export default function Home() {
     });
   }, [onGetPokemons]);
 
+  const renderContent = () => {
+    if (isLoading && !filteredPokemons.length) {
+      return Array.from({ length: 10 }).map((_, i) => (
+        <Grid key={i} size={1}>
+          <PokemonCard name="" url="" loading />
+        </Grid>
+      ));
+    }
+
+    if (!filteredPokemons.length) {
+      return <Typography>No data!</Typography>;
+    }
+
+    return (
+      <>
+        {filteredPokemons.map((d) => (
+          <Grid key={d.name} size={1}>
+            <PokemonCard
+              {...d}
+              onClickCard={() => router.push(d.name)}
+              collectionType={
+                pokemonCollections.find((pokemon) => pokemon.name === d.name)
+                  ?.collectionType
+              }
+            />
+          </Grid>
+        ))}
+        {isLoading &&
+          Array.from({ length: 10 }).map((_, i) => (
+            <Grid key={`skeleton-${i}`} size={1}>
+              <PokemonCard name="" url="" loading />
+            </Grid>
+          ))}
+      </>
+    );
+  };
+
   return (
     <>
       <Box sx={pokemonListSty}>
@@ -45,38 +82,16 @@ export default function Home() {
         </Typography>
 
         <Box sx={{ overflowY: "auto", flex: 1 }}>
-          {!filteredPokemons.length && !isLoading ? (
-            <Typography>No data!</Typography>
-          ) : (
-            <Grid
-              container
-              spacing={2}
-              columns={{ xs: 1, sm: 2, md: 3, lg: 5, xl: 8 }}
-              sx={pokemonGridSty}
-            >
-              {filteredPokemons.map((d) => (
-                <Grid key={d.name} size={1}>
-                  <PokemonCard
-                    {...d}
-                    onClickCard={() => router.push(d.name)}
-                    collectionType={
-                      pokemonCollections.find(
-                        (pokemon) => pokemon.name === d.name,
-                      )?.collectionType
-                    }
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          )}
+          <Grid
+            container
+            spacing={2}
+            columns={{ xs: 1, sm: 2, md: 3, lg: 5, xl: 8 }}
+            sx={pokemonGridSty}
+          >
+            {renderContent()}
+          </Grid>
 
           <Box ref={infiniteRef} style={{ height: 1 }} />
-
-          {isLoading && (
-            <Typography sx={{ textAlign: "center", py: 2 }}>
-              Loading...
-            </Typography>
-          )}
         </Box>
       </Box>
     </>

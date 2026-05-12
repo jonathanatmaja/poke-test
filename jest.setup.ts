@@ -18,3 +18,11 @@ jest.mock("axios", () => ({
   ...jest.requireActual("axios"),
   get: jest.fn(),
 }));
+
+jest.mock("@faker-js/faker", () => ({
+  faker: {
+    lorem: {
+      sentences: () => "mocked summary text",
+    },
+  },
+}));

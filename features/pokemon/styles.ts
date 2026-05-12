@@ -31,6 +31,7 @@ export const statCardSty: SxProps = {
   display: "flex",
   width: "100%",
   columnGap: 4,
+  flexDirection: "column",
 };
 
 export const spriteCardSty: SxProps = {

@@ -24,10 +24,11 @@ import {
 import type { PokemonLoreType } from "@/features/pokemon/types";
 import { getRandomPaleColor } from "@/features/pokemon/utils";
 import { BackButton } from "@/lib/components/back-button";
+import { SmartSummary } from "@/lib/components/smart-summary";
 import { DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
 import { Box, Card, Chip, CircularProgress, Typography } from "@mui/material";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 export default function PokemonDetailPage() {
@@ -95,7 +96,9 @@ export default function PokemonDetailPage() {
     );
   }
 
-  if (!pokemon) return null;
+  if (!isLoading && !pokemon) {
+    notFound();
+  }
 
   return (
     <Box sx={{ padding: "2rem" }}>
@@ -114,10 +117,11 @@ export default function PokemonDetailPage() {
               <Box key={url}>
                 <Image
                   src={url}
-                  alt={`${pokemon.name} sprite`}
+                  alt={`${pokemon?.name} sprite`}
                   width={DEFAULT_IMG_WIDTH_HEIGHT * 2}
                   height={DEFAULT_IMG_WIDTH_HEIGHT * 2}
                   style={{ transform: "scale(1.2)" }}
+                  priority
                 />
               </Box>
             ))
@@ -139,9 +143,9 @@ export default function PokemonDetailPage() {
                 sx={{ fontSize: 36 }}
                 data-testid="pokemon-name"
               >
-                {pokemon.name}
+                {pokemon?.name}
               </Typography>
-              <Chip label={pokemon.id} variant="outlined" size="small" />
+              <Chip label={pokemon?.id} variant="outlined" size="small" />
             </Box>
 
             <PokemonTypes types={types} />
@@ -150,12 +154,17 @@ export default function PokemonDetailPage() {
             </Typography>
           </Card>
           <Card variant="outlined" elevation={0} sx={statCardSty}>
-            <Box sx={{ flex: 1 }}>
-              <PokemonStats stats={stats} />
-              <PokemonVarieties varieties={varieties} />
+            <Box sx={{ display: "flex", columnGap: 5, flex: 2 }}>
+              <Box sx={{ flex: 1 }}>
+                <PokemonStats stats={stats} />
+                <PokemonVarieties varieties={varieties} />
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                {pokemon?.name && <PokemonFavoriteForm name={pokemon.name} />}
+              </Box>
             </Box>
             <Box sx={{ flex: 1 }}>
-              <PokemonFavoriteForm name={pokemon.name} />
+              <SmartSummary name={name} />
             </Box>
           </Card>
         </Box>
