@@ -23,16 +23,16 @@ import {
 } from "@/features/pokemon/styles";
 import type { PokemonLoreType } from "@/features/pokemon/types";
 import { getRandomPaleColor } from "@/features/pokemon/utils";
-import { BackButton } from "@/lib/components/back-button";
 import { SmartSummary } from "@/lib/components/smart-summary";
 import { DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
 import { Box, Card, Chip, CircularProgress, Typography } from "@mui/material";
 import Image from "next/image";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 export default function PokemonDetailPage() {
   const params = useParams<{ name?: string }>();
+  const route = useRouter();
   const name = params.name ?? "";
   const {
     onGetPokemonDetail,
@@ -100,16 +100,10 @@ export default function PokemonDetailPage() {
     notFound();
   }
 
+  const handleBack = () => route.push("/");
+
   return (
     <Box sx={{ padding: "2rem" }}>
-      <BackButton
-        sx={{
-          position: "fixed",
-          right: 50,
-          bottom: 50,
-          zIndex: 1000,
-        }}
-      />
       <Box sx={detailWrapperSty}>
         <Card variant="outlined" elevation={0} sx={imageCardSty}>
           {spriteUrls.length ? (
