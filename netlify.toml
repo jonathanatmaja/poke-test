@@ -1,8 +1,3 @@
 [build]
   command = "npm run build-storybook"
   publish = "storybook-static"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    enabled = false
