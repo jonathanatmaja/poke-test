@@ -14,16 +14,17 @@ const buttonSty: SxProps = {
 
 interface BackButtonProps {
   sx?: SxProps;
+  onBack?: () => void;
 }
 
 export const BackButton = (props: BackButtonProps) => {
-  const { sx } = props;
+  const { sx, onBack } = props;
   const route = useRouter();
   return (
     <Card
       variant="outlined"
       sx={{ ...buttonSty, ...sx }}
-      onClick={() => route.back()}
+      onClick={onBack ?? (() => route.back())}
     >
       <ArrowBack fontSize="small" />
     </Card>

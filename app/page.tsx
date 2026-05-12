@@ -5,6 +5,7 @@ import { usePokemonList } from "@/features/home/hooks/use-pokemon-list";
 import { usePokemonSearch } from "@/features/home/hooks/use-search-pokemon";
 import { pokemonGridSty, pokemonListSty } from "@/features/home/styles";
 import { usePokemonCollection } from "@/features/pokemon/hooks/use-pokemon-collection";
+import { InputSearch } from "@/lib/components/input-search";
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from "@/lib/constants";
 
 import { Box, Grid, TextField, Typography } from "@mui/material";
@@ -38,14 +39,7 @@ export default function Home() {
   return (
     <>
       <Box sx={pokemonListSty}>
-        <TextField
-          variant="outlined"
-          fullWidth
-          placeholder="Search Pokemon..."
-          onChange={(e) => onSearch(e.target.value)}
-          sx={{ py: "2rem", flexShrink: 0 }}
-        />
-
+        <InputSearch onSearch={(e) => onSearch(e.target.value)} fullWidth />
         <Typography sx={{ mb: "1rem", flexShrink: 0 }}>
           Showing {filteredPokemons.length} results
         </Typography>
