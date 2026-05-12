@@ -53,3 +53,10 @@ npm run lint          # lint
 ```bash
 npm run storybook
 ```
+
+## APIs Used
+
+Endpoints (PokeAPI v2):
+- `GET /pokemon?limit=<number>&offset=<number>`: list pokemons (home page)
+- `GET /pokemon/<name>`: pokemon detail
+- `GET /pokemon-species/<name>`: pokemon lore/species info
