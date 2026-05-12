@@ -1,4 +1,8 @@
 export const getStorage = (key: string) => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   const item = localStorage.getItem(key);
 
   return item ? JSON.parse(item) : null;

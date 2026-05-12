@@ -2,19 +2,19 @@ import { Card, Typography } from "@mui/material";
 import Image from "next/image";
 import { pokemonCardSty } from "../styles";
 
-import { DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
-import { Star, StarBorder } from "@mui/icons-material";
+import { COLLECTION_TYPES, DEFAULT_IMG_WIDTH_HEIGHT } from "@/lib/constants";
+import { CatchingPokemon, People, Star } from "@mui/icons-material";
 
 interface PokemonCardProps {
   name: string;
   sprite?: string;
   url: string;
-  isFavorite?: boolean;
+  collectionType?: number;
   onClickCard?: () => void;
 }
 
 export const PokemonCard = (props: PokemonCardProps) => {
-  const { name, sprite, isFavorite, onClickCard } = props;
+  const { name, sprite, collectionType, onClickCard } = props;
 
   return (
     <Card
@@ -23,10 +23,17 @@ export const PokemonCard = (props: PokemonCardProps) => {
       sx={pokemonCardSty}
       {...(onClickCard && { onClick: onClickCard })}
     >
-      {isFavorite ? (
+      {Number(collectionType) === COLLECTION_TYPES.WHISHLIST && (
         <Star style={{ color: "gold" }} sx={{ alignSelf: "flex-end" }} />
-      ) : (
-        <StarBorder style={{ color: "gold" }} sx={{ alignSelf: "flex-end" }} />
+      )}
+      {Number(collectionType) === COLLECTION_TYPES.TEAM && (
+        <People style={{ color: "blueviolet" }} sx={{ alignSelf: "flex-end" }} />
+      )}
+      {Number(collectionType) === COLLECTION_TYPES.OWNED && (
+        <CatchingPokemon
+          style={{ color: "red" }}
+          sx={{ alignSelf: "flex-end" }}
+        />
       )}
       <Image
         src={String(sprite)}

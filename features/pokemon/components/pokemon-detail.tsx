@@ -3,11 +3,11 @@ import { Box, Card, Chip, Typography } from "@mui/material";
 import Image from "next/image";
 import { detailCardSty, imageCardSty } from "../styles";
 import { PokemonDetailType, PokemonLoreType } from "../types";
+import { getRandomPaleColor } from "../utils";
+import { PokemonFavoriteForm } from "./pokemon-favorite-form";
 import { PokemonStats, PokemonStatsProps } from "./pokemon-stats";
 import { PokemonTypes, PokemonTypesProps } from "./pokemon-types";
-import { getRandomPaleColor } from "../utils";
 import { PokemonVarieties, PokemonVarietiesProps } from "./pokemon-varieties";
-import { PokemonFavoriteForm } from "./pokemon-favorite-form";
 
 interface PokemonDetailProps {
   detail: Partial<PokemonDetailType>;
@@ -105,7 +105,7 @@ export const PokemonDetail = (props: PokemonDetailProps) => {
             <PokemonVarieties varieties={varieties} />
           </Box>
           <Box sx={{ flex: 1 }}>
-            <PokemonFavoriteForm />
+            <PokemonFavoriteForm name={String(detail?.name)} />
           </Box>
         </Card>
       </Box>

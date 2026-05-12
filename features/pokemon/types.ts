@@ -172,7 +172,8 @@ export type PokemonLoreType = {
 };
 
 export type PokemonCollectionType = {
+  name: string;
   nickname: string;
-  collectionType: 1 | 2 | 3;
+  collectionType: number;
   description?: string;
 };

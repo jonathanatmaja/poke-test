@@ -4,6 +4,7 @@ import { PokemonCard } from "@/features/home/components/pokemon-card";
 import { usePokemonList } from "@/features/home/hooks/use-pokemon-list";
 import { usePokemonSearch } from "@/features/home/hooks/use-search-pokemon";
 import { pokemonGridSty, pokemonListSty } from "@/features/home/styles";
+import { usePokemonCollection } from "@/features/pokemon/hooks/use-pokemon-collection";
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from "@/lib/constants";
 
 import { Box, Grid, TextField, Typography } from "@mui/material";
@@ -17,6 +18,8 @@ export default function Home() {
   const { filteredPokemons, onSearch, searchValue } =
     usePokemonSearch(pokemons);
   const router = useRouter();
+
+  const { pokemonCollections } = usePokemonCollection();
 
   const [infiniteRef] = useInfiniteScroll({
     hasNextPage: hasMore,
@@ -59,7 +62,15 @@ export default function Home() {
             >
               {filteredPokemons.map((d) => (
                 <Grid key={d.name} size={1}>
-                  <PokemonCard {...d} onClickCard={() => router.push(d.name)} />
+                  <PokemonCard
+                    {...d}
+                    onClickCard={() => router.push(d.name)}
+                    collectionType={
+                      pokemonCollections.find(
+                        (pokemon) => pokemon.name === d.name,
+                      )?.collectionType
+                    }
+                  />
                 </Grid>
               ))}
             </Grid>

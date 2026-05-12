@@ -1,11 +1,19 @@
 import { getStorage } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PokemonCollectionType } from "../types";
+import { pokemonCollectionSchema } from "./models";
 
 const STORAGE_KEY = "pokemon_collections";
 
-export const useSetFavorite = () => {
+export const usePokemonCollection = (name?: string) => {
+  const collectionForm = useForm<PokemonCollectionType>({
+    defaultValues: { collectionType: 1, description: "", nickname: "", name },
+    resolver: zodResolver(pokemonCollectionSchema),
+  });
+
   const [pokemonCollections, setPokemonCollections] = useState<
     PokemonCollectionType[]
   >(() => {
@@ -14,11 +22,15 @@ export const useSetFavorite = () => {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(pokemonCollections));
+    const existingData = pokemonCollections.find((d) => d.name === name);
+    if (existingData) {
+      collectionForm.reset(existingData);
+    }
   }, [pokemonCollections]);
 
   const handleSubmitCollection = (params: PokemonCollectionType) => {
     const isAlreadyExist = pokemonCollections.find(
-      (item) => item.nickname === params.nickname,
+      (item) => item.name === params.name,
     );
 
     if (isAlreadyExist) {
@@ -41,5 +53,6 @@ export const useSetFavorite = () => {
     pokemonCollections,
     onSubmitCollection: handleSubmitCollection,
     onRemoveCollecion: handleRemoveCollection,
+    collectionForm,
   };
 };
